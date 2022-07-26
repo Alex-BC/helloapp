@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
-     
+      
 @Component({
     selector: 'my-app',
-    template: `<label>Введите имя:</label>
-                 <input [(ngModel)]="name" placeholder="name">
-                 <h1>Добро пожаловать {{name}}!</h1>`
+    template: `<p>Количество кликов {{count}}</p>
+                <button (click)="increase()">+1</button>
+                <button *ngIf="count > 0; else elseBlock" (click)="decrease()">-1</button>         
+                <ng-template #elseBlock></ng-template>`
 })
 export class AppComponent { 
-    name= '';
+    count: number=0;
+    increase() : void {
+        this.count++;
+    }
+    decrease() : void {
+        this.count--;
+        
+    }
+   
 }
